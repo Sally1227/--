@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../common/js/plugins/bootstrap-3.3.5/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../common/js/plugins/dist/css/bootstrapValidator.css"/>
+    <link rel="stylesheet" href="../common/js/plugins/bootstrap-table/css/bootstrap-table.css"/>
+    <link rel="stylesheet" href="js/city_picker/css/city.css"/>
+
+    <link rel="stylesheet" href="../common/css/basic.css"/>
+
+    <!--<script type="text/javascript" src="../common/js/plugins/jquery/jquery-1.8.3.min.js"></script>-->
+
+</head>
+<body>
+
+<div class="mr10">
+
+    <div style="margin: 20px">
+        <div class="row">
+            <div class="col-xs-3">
+                <label class="col-xs-4 text-right">项目名称</label>
+                <div class="col-xs-8"><input class="input-sm form-control" type="text" name="projectName" id="projectName"></div>
+                <input type="hidden" name="projectId" id="projectId">
+            </div>
+            <div class="col-xs-3">
+                <button type="button" class="btn btn-sm btn-success" id="onAdd" onclick="addInquiry()">新增询价</button>
+            </div>
+            <div class="col-xs-3">
+                <button type="button" class="btn btn-sm btn-success" id="onSubmit">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="inquiry-box">
+        <!-- Nav tabs -->
+        <ul id="nav-tabs" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#inquiry-pane400" aria-controls="inquiry-pane400" role="tab" data-toggle="tab">询价1</a></li>
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div id="tab-content" class="tab-content">
+            <div role="tabpanel" class="tab-pane active mrt20" id="inquiry-pane400">
+                <form id="addForm400">
+                    <div class="form-box">
+                        <div class="row">
+                            <div class="col-xs-4 form-group label-item">
+                                <label class="col-sm-3 control-label text-right">机构类型</label>
+                                <div class="col-sm-9 relative">
+                                    <!-- 询价id -->
+                                    <input type="hidden" name="inquiryId" class="inquiryId">
+
+                                    <select class="form-control input-xs instType" name="instType">
+                                        <option value="1">银行</option>
+                                        <option value="2">法院</option>
+                                        <!--<option value="3">担保公司</option>
+                                        <option value="4">个人</option>-->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 form-group label-item">
+                                <label class="col-sm-3 control-label text-right">机构名称</label>
+                                <div class="col-sm-9 relative">
+                                    <select class="form-control input-xs instId" name="instId">
+                                        <option value="0">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 form-group label-item">
+                                <label class="col-sm-3 control-label text-right">分支机构</label>
+                                <div class="col-sm-9 relative">
+                                    <select class="form-control input-xs instBranch" name="instBranch">
+                                        <option value="0">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 form-group label-item">
+                                <label class="col-sm-3 control-label text-right">业务员</label>
+                                <div class="col-sm-9 relative">
+                                    <input type="text" class="form-control input-sm businessPeople" name="businessPeople">
+                                </div>
+                            </div>
+                            <div class="col-xs-4 form-group label-item">
+                                <label class="col-sm-3 control-label text-right">询价员</label>
+                                <div class="col-sm-9 relative">
+                                    <input type="text" class="form-control input-sm inquirer" name="inquirer">
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4 form-group label-item">
+                                <label class="col-sm-3 control-label text-right">城市</label>
+                                <div class="col-sm-9 relative">
+                                    <div id="cityBox400" class="cityBox">
+                                        <input type="hidden" class="cityInput city" provinceId="440000" cityId="440300" countyId="440304" provinceText="广东省" cityText="深圳市" countyText="福田区" value="广东省深圳市福田区">
+                                        <div class="cityText active">
+                                            <div class="content">
+				                                <span class="provinceTxt active cityText-span" dataId="440000" title="广东省" dataText="广东省"><em>广东省</em><i class="iconfont icon-cha cityText-iconfont"></i></span>
+                                                <span class="cityTxt active cityText-span" dataId="440300" title="深圳市" dataText="深圳市"><em>深圳市</em><i class="iconfont icon-cha cityText-iconfont"></i></span>
+                                                <span class="countyTxt active cityText-span" dataId="440304" title="福田区" dataText="福田区"><em>福田区</em><i class="iconfont icon-cha cityText-iconfont"></i></span>
+                                                <div class="defaultTxt">全部</div>
+                                            </div>
+                                            <span class="iconfont icon-jiantou cityText-jiantou cityText-span"></span>
+                                            <div class="cityBtn">确定</div>
+                                        </div>
+                                        <div class="cityPanel">
+                                            <div class="cityTop">
+                                                <ul>
+                                                    <li class="active cityTop-li">
+                                                        <span>省份</span>
+                                                    </li>
+                                                    <li class="cityTop-li">
+                                                        <span>城市</span>
+                                                    </li>
+                                                    <li class="cityTop-li">
+                                                        <span>县区</span>
+                                                    </li>
+                                                </ul>
+                                                <span class="defaultBtn">全部</span>
+                                            </div>
+                                            <div class="citysContent">
+                                                <div class="selBox provinceBox active">
+                                                    <dl>
+                                                        <dt>A-G</dt>
+                                                        <dd class="provinceBox-dd" dataId="340000">安徽省</dd>
+                                                        <dd class="provinceBox-dd" dataId="110000">北京市</dd>
+                                                        <dd class="provinceBox-dd" dataId="500000">重庆市</dd>
+                                                        <dd class="provinceBox-dd" dataId="350000">福建省</dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt></dt>
+                                                        <dd class="provinceBox-dd" dataId="620000">甘肃省</dd>
+                                                        <dd class="provinceBox-dd" dataId="440000">广东省</dd>
+                                                        <dd class="provinceBox-dd" dataId="450000">广西壮族自治区</dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt></dt>
+                                                        <dd class="provinceBox-dd" dataId="520000">贵州省</dd>
+                                                    </dl>
+                                                    <div class="sep"></div>
+                                                    <dl>
+                                                        <dt>H-K</dt>
+                                                        <dd class="provinceBox-dd" dataId="460000">海南省</dd>
+                                                        <dd class="provinceBox-dd" dataId="130000">河北省</dd>
+                                                        <dd class="provinceBox-dd" dataId="410000">河南省</dd>
+                                                        <dd class="provinceBox-dd" dataId="220000">吉林省</dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt></dt>
+                                                        <dd class="provinceBox-dd" dataId="420000">湖北省</dd>
+                                                        <dd class="provinceBox-dd" dataId="430000">湖南省</dd>
+                                                        <dd class="provinceBox-dd" dataId="320000">江苏省</dd>
+                                                        <dd class="provinceBox-dd" dataId="360000">江西省</dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt></dt>
+                                                        <dd class="provinceBox-dd" dataId="230000">黑龙江省</dd>
+                                                    </dl>
+                                                    <div class="sep"></div>
+                                                    <dl>
+                                                        <dt>L-S</dt>
+                                                        <dd class="provinceBox-dd" dataId="210000">辽宁省</dd>
+                                                        <dd class="provinceBox-dd" dataId="150000">内蒙古自治区</dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt></dt>
+                                                        <dd class="provinceBox-dd" dataId="640000">宁夏回族自治区</dd>
+                                                        <dd class="provinceBox-dd" dataId="630000">青海省</dd>
+                                                        <dd class="provinceBox-dd" dataId="370000">山东省</dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt></dt>
+                                                        <dd class="provinceBox-dd" dataId="310000">上海市</dd>
+                                                        <dd class="provinceBox-dd" dataId="140000">山西省</dd>
+                                                        <dd class="provinceBox-dd" dataId="610000">陕西省</dd>
+                                                        <dd class="provinceBox-dd" dataId="510000">四川省</dd>
+                                                    </dl>
+                                                    <div class="sep"></div>
+                                                    <dl>
+                                                        <dt>T-Z</dt>
+                                                        <dd class="provinceBox-dd" dataId="120000">天津市</dd>
+                                                        <dd class="provinceBox-dd" dataId="650000">新疆维吾尔自治区</dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt></dt>
+                                                        <dd class="provinceBox-dd" dataId="540000">西藏自治区</dd>
+                                                        <dd class="provinceBox-dd" dataId="530000">云南省</dd>
+                                                        <dd class="provinceBox-dd" dataId="330000">浙江省</dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="selBox citysBox">
+                                                    <div class="noData active">请选择省份</div>
+                                                    <dl></dl>
+                                                </div>
+                                                <div class="selBox countyBox">
+                                                    <div class="noData active">请选择城市</div>
+                                                    <dl></dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="footer-button text-center"><button type="button" class="btn btn-sm btn-success btn-save">保存</button></div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../common/js/plugins/jquery/jquery-2.2.4.min.js"></script>
+
+<script type="text/javascript" src="../common/js/plugins/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../common/js/plugins/dist/js/bootstrapValidator.js"></script>
+<script type="text/javascript" src="../common/js/plugins/bootstrap-table/js/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="../common/js/plugins/bootstrap-table/js/bootstrap-table-locale-all.min.js"></script>
+<script type="text/javascript" src="js/city_picker/js/city.data-3.js"></script>
+<script type="text/javascript" src="js/city_picker/js/city.js"></script>
+<script src="data/data1.js"></script>
+<script src="js/index1.js"></script>
+
+</body>
+</html>
